@@ -1,1 +1,53 @@
 <router-outlet />
+
+<!-- Atributos -->
+<div [ngStyle]="{ color: condition ? 'blue' : 'red' }">ngStyle</div>
+
+<div [ngClass]="{ condition: condition }">ngClass</div>
+
+<!-- Estructurales -->
+<div *ngIf="condition">Me rendericé</div>
+<!-- <div *ngFor="let item of arreglito">{{ item }}</div> -->
+
+<ul>
+  <ng-container *ngFor="let item of arreglito; let i = index; trackBy: trackByFn; let first = first; let last = last; let even = even">
+    <li *ngIf="last">{{ item.name + i }}</li>
+  </ng-container>
+</ul>
+
+<!-- NgSwitch -->
+<ng-container [ngSwitch]="selectedOption">
+  <p *ngSwitchCase="'uno'">Soy el uno</p>
+  <h2 *ngSwitchCase="'dos'">Soy el dos</h2>
+  <ng-container *ngSwitchCase="'tres'" [ngTemplateOutlet]="numeroTresTemplate" />
+</ng-container>
+
+<ng-template #numeroTresTemplate>
+  <ul>
+    <ng-container *ngFor="let item of arreglito; let i = index; trackBy: trackByFn; let first = first; let last = last; let even = even">
+      <li *ngIf="last">{{ item.name + i }} numeroTresTemplate</li>
+    </ng-container>
+  </ul>
+</ng-template>
+
+<!-- Templetes -->
+<div>
+  <ng-container>Dom</ng-container>
+</div>
+<!-- Sintaxis React -->
+<!-- <></> -->
+
+<!-- NgTemplate -->
+<div>
+  <ng-template #template> Esto es un ng-template </ng-template>
+</div>
+
+<!-- NgIf por Angular -->
+<ng-template [ngIf]="condition">
+  <div>Esto es un ng-template por Angular con ngIf</div>
+</ng-template>
+
+<!-- NgFor por Angular -->
+<!-- <ng-template ngFor let-item [ngForOf]="arreglito" let-i="index" [ngForTrackBy]="i">
+  <div>{{ item }}</div>
+</ng-template> -->
